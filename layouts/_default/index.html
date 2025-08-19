@@ -129,7 +129,7 @@
             <a class='fn-item' item_index='{{ 0 }}' href='./#site-head'>{{ $fnav_title | safeHTML }}</a>
         {{ end }}
         {{ $last_index_val := 0 }}
-        {{ range $index_val, $elem_val := $content }}
+        {{ range $index_val, $elem_val := (where $content "Params.nav_menu" "!=" false) }}
             {{ $fnav_title := .Title }}{{ with .Params.navigation_menu_title }}{{ $fnav_title = . }}{{ end }}
             <a class='fn-item' item_index='{{ (add $index_val 1) }}' href='#{{ anchorize $fnav_title }}'>{{ $fnav_title | safeHTML }}</a>
             {{ $last_index_val = $index_val }}
